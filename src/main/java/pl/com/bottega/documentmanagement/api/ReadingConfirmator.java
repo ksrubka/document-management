@@ -17,7 +17,6 @@ public class ReadingConfirmator {
     public void confirmFor(DocumentNumber docNr, Employee forEmployee) {
         checkNotNull(docNr);
         checkNotNull(forEmployee);
-
-        //user potwierdzający forEmployee  będzie brany z bieżącej sesji dlatego nie dajemy go do parametrów
+        //user potwierdzający forEmployee będzie brany z bieżącej sesji dlatego nie dajemy go do parametrów
     }
 }
