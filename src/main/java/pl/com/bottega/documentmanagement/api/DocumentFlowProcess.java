@@ -3,12 +3,13 @@ package pl.com.bottega.documentmanagement.api;
 import pl.com.bottega.documentmanagement.domain.Document;
 import pl.com.bottega.documentmanagement.domain.DocumentNumber;
 import pl.com.bottega.documentmanagement.domain.DocumentNumberGenerator;
-import pl.com.bottega.documentmanagement.infrastructure.DocumentRepository;
+import pl.com.bottega.documentmanagement.domain.EmployeeId;
+import pl.com.bottega.documentmanagement.domain.repositories.DocumentRepository;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Created by Beata Iłowiecka on 12.06.2016.
+ * Created by maciuch on 12.06.16.
  */
 public class DocumentFlowProcess {
 
@@ -17,43 +18,46 @@ public class DocumentFlowProcess {
     private UserManager userManager;
 
     public DocumentNumber create(String title, String content) {
-        //todo walidacja długości i innych właściwości parametrów
         checkNotNull(title);
         checkNotNull(content);
-        DocumentNumber docNr = documentNumberGenerator.generate();
-        Document document = new Document(docNr, title, content);
+
+        DocumentNumber documentNumber = documentNumberGenerator.generate();
+        Document document = new Document(documentNumber, title, content);
         documentRepository.save(document);
-        return docNr;
+
+        return documentNumber;
     }
 
-    public void change(DocumentNumber docNr, String newTitle, String newContent) {
-        checkNotNull(docNr);
+    public void change(DocumentNumber documentNumber, String newTitle, String newContent) {
+        checkNotNull(documentNumber);
         checkNotNull(newTitle);
         checkNotNull(newContent);
-        Document document = documentRepository.load(docNr);
+
+        Document document = documentRepository.load(documentNumber);
         document.change(newTitle, newContent);
         documentRepository.save(document);
     }
 
-    public void verify(DocumentNumber docNr) {
-        checkNotNull(docNr);
-        Document document = documentRepository.load(docNr);
-        documentRepository.save(document);
-    }
+    public void verify(DocumentNumber documentNumber) {
+        checkNotNull(documentNumber);
 
-    public void publish(DocumentNumber docNr) {
-        checkNotNull(docNr);
-        Document document = documentRepository.load(docNr);
+        Document document = documentRepository.load(documentNumber);
         document.verify(userManager.currentEmployee());
         documentRepository.save(document);
     }
 
-    public void archive(DocumentNumber docNr) {
-        checkNotNull(docNr);
+    public void publish(DocumentNumber documentNumber, Iterable<EmployeeId> ids) {
+        checkNotNull(documentNumber);
     }
 
-    public DocumentNumber createNewVersion(DocumentNumber docNr) {
-        checkNotNull(docNr);
+    public void archive(DocumentNumber documentNumber) {
+        checkNotNull(documentNumber);
+    }
+
+    public DocumentNumber createNewVersion(DocumentNumber documentNumber) {
+        checkNotNull(documentNumber);
+
         return null;
     }
+
 }

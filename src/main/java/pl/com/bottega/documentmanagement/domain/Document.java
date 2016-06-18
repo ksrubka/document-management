@@ -1,17 +1,17 @@
 package pl.com.bottega.documentmanagement.domain;
 
-import pl.com.bottega.documentmanagement.infrastructure.DocumentDto;
+import pl.com.bottega.documentmanagement.api.DocumentDto;
 
 /**
- * Created by Beata Iłowiecka on 12.06.2016.
+ * Created by maciuch on 12.06.16.
  */
 public class Document {
 
-    public Document(DocumentNumber docNr, String title, String content) {
+    public Document(DocumentNumber documentNumber, String content, String title) {
 
     }
 
-    public void change(String newTitle, String newContent) {
+    public void change(String title, String content) {
 
     }
 
@@ -19,9 +19,12 @@ public class Document {
 
     }
 
-    public DocumentDto export() {
-        DocumentDto dto = new DocumentDto();
-        //tu przepakowanie seterami i geterami pól document na dto
-        return dto;
+    public void confirm(Employee conirmator) {
+
     }
+
+    public void confirm(Employee confirmator, Employee forEmployee) {
+
+    }
+
 }

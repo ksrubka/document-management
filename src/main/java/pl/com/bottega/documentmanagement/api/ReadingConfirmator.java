@@ -1,22 +1,36 @@
 package pl.com.bottega.documentmanagement.api;
 
+import pl.com.bottega.documentmanagement.domain.Document;
 import pl.com.bottega.documentmanagement.domain.DocumentNumber;
 import pl.com.bottega.documentmanagement.domain.Employee;
+import pl.com.bottega.documentmanagement.domain.repositories.DocumentRepository;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Created by Beata Iłowiecka on 12.06.2016.
+ * Created by maciuch on 12.06.16.
  */
 public class ReadingConfirmator {
 
-    public void confirm(DocumentNumber docNr) {
-        checkNotNull(docNr);
+    private DocumentRepository documentRepository;
+    private UserManager userManager;
+
+    public void confirm(DocumentNumber documentNumber) {
+        checkNotNull(documentNumber);
+
+        Document document = documentRepository.load(documentNumber);
+        document.confirm(userManager.currentEmployee());
+        documentRepository.save(document);
     }
 
-    public void confirmFor(DocumentNumber docNr, Employee forEmployee) {
-        checkNotNull(docNr);
+    public void confirm(DocumentNumber documentNumber, Employee forEmployee) {
+        checkNotNull(documentNumber);
         checkNotNull(forEmployee);
-        //user potwierdzający forEmployee będzie brany z bieżącej sesji dlatego nie dajemy go do parametrów
+
+        Document document = documentRepository.load(documentNumber);
+        document.confirm(userManager.currentEmployee(), forEmployee);
+
+        documentRepository.save(document);
     }
+
 }
