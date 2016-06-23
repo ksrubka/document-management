@@ -35,10 +35,10 @@ public class SignupResultDto {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("SignupResultDto{");
-        sb.append("success=").append(success);
-        sb.append(", failureReason='").append(failureReason).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "SignupResultDto{" +
+                "success=" + success +
+                ", failureReason='" + failureReason + '\'' +
+                '}';
     }
+
 }
