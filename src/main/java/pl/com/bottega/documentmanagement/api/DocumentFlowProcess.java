@@ -39,6 +39,7 @@ public class DocumentFlowProcess {
         return documentNumber;
     }
 
+    @Transactional
     public void change(DocumentNumber documentNumber, String newTitle, String newContent) {
         checkNotNull(documentNumber);
         checkNotNull(newTitle);

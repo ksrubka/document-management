@@ -9,12 +9,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Created by Beata Iłowiecka on 19.06.2016.
+ * Created by maciuch on 19.06.16.
  */
 @Repository
 public class JPAEmployeeRepository implements EmployeeRepository {
 
-    //adnotacja która mówi konstruktorowi żeby wstrzyknął managera
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -32,8 +31,8 @@ public class JPAEmployeeRepository implements EmployeeRepository {
     public boolean isLoginOccupied(String login) {
         return entityManager.
                 createQuery("SELECT count(e) " +
-                        "FROM Employee e " +
-                        "WHERE login=:login",
+                                "FROM Employee e " +
+                                "WHERE login=:login",
                         Long.class).
                 setParameter("login", login).
                 getSingleResult() > 0;
@@ -43,8 +42,7 @@ public class JPAEmployeeRepository implements EmployeeRepository {
     public Employee findByLoginAndPassword(String login, String hashedPassword) {
         return entityManager.
                 createQuery("FROM Employee " +
-                                "WHERE login=:login " +
-                        "AND hashedPassword=:pwd",
+                        "WHERE login=:login AND hashedPassword=:pwd",
                         Employee.class).
                 setParameter("login", login).
                 setParameter("pwd", hashedPassword).

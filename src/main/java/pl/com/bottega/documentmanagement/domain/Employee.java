@@ -3,8 +3,6 @@ package pl.com.bottega.documentmanagement.domain;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
-import java.io.Serializable;
-
 import static com.google.common.base.Preconditions.checkState;
 
 /**

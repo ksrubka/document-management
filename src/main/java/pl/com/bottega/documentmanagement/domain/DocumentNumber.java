@@ -1,5 +1,7 @@
 package pl.com.bottega.documentmanagement.domain;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.Embeddable;
 
 /**
@@ -8,7 +10,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class DocumentNumber {
 
+    @NaturalId
     private String number;
+
+    private DocumentNumber() {}
 
     public DocumentNumber(String number) {
         this.number = number;
