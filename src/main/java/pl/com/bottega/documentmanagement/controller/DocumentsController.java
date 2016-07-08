@@ -1,9 +1,6 @@
 package pl.com.bottega.documentmanagement.controller;
 
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.com.bottega.documentmanagement.api.DocumentFlowProcess;
 import pl.com.bottega.documentmanagement.domain.DocumentNumber;
 
@@ -25,4 +22,9 @@ public class DocumentsController {
         return documentFlowProcess.create(documentRequest.getTitle(), documentRequest.getContent());
     }
 
+    @PostMapping("/{documentNumber}")
+    public String update(@PathVariable String documentNumber, @RequestBody DocumentRequest documentRequest) {
+        documentFlowProcess.change(new DocumentNumber(documentNumber), documentRequest.getTitle(), documentRequest.getContent());
+        return "{'success': true}";
+    }
 }
