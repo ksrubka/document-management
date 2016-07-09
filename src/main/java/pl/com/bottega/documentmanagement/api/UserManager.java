@@ -2,6 +2,7 @@ package pl.com.bottega.documentmanagement.api;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
@@ -72,4 +73,7 @@ public class UserManager {
         return this.currentEmployee;
     }
 
+    public boolean isAuthenticated() {
+        return currentEmployee != null;
+    }
 }

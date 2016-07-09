@@ -1,20 +1,23 @@
 package pl.com.bottega.documentmanagement.api;
 
 /**
- * Created by Beata Iłowiecka on 18.06.2016.
+ * Created by Beata Iłowiecka on 09.07.2016.
  */
-public class SignUpResultDTO {
+public class SignupResultDto {
 
-    private String failureReason;
     private boolean success;
+    private String failureReason;
 
-    public SignUpResultDTO() {
+    public SignupResultDto() {
         success = true;
     }
 
-    public SignUpResultDTO(String failureReason) {
-        this.failureReason = failureReason;
-        success = false;
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public String getFailureReason() {
@@ -25,11 +28,16 @@ public class SignUpResultDTO {
         this.failureReason = failureReason;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public SignupResultDto(String failureReason) {
+        this.failureReason = failureReason;
+        success = false;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    @Override
+    public String toString() {
+        return "SignupResultDto{" +
+                "success=" + success +
+                ", failureReason='" + failureReason + '\'' +
+                '}';
     }
 }
