@@ -32,11 +32,9 @@ public class DocumentFlowProcess {
     public DocumentNumber create(String title, String content) {
         checkNotNull(title);
         checkNotNull(content);
-
         DocumentNumber documentNumber = documentNumberGenerator.generate();
         Document document = new Document(documentNumber, title, content, userManager.currentEmployee());
         documentRepository.save(document);
-
         return documentNumber;
     }
 
@@ -46,7 +44,6 @@ public class DocumentFlowProcess {
         checkNotNull(documentNumber);
         checkNotNull(newTitle);
         checkNotNull(newContent);
-
         Document document = documentRepository.load(documentNumber);
         document.change(newTitle, newContent);
         documentRepository.save(document);

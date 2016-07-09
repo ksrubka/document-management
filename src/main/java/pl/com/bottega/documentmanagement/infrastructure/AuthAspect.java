@@ -7,7 +7,7 @@ import pl.com.bottega.documentmanagement.api.UserManager;
 /**
  * Created by Beata Iłowiecka on 09.07.2016.
  */
-@Component("misio")
+@Component
 public class AuthAspect {
 
     private UserManager userManager;
