@@ -23,15 +23,7 @@ public class DocumentsController {
     }
 
     @PostMapping("/{documentNumber}")
-<<<<<<< HEAD
     public void update(@PathVariable String documentNumber, @RequestBody DocumentRequest documentRequest) {
         documentFlowProcess.change(new DocumentNumber(documentNumber), documentRequest.getTitle(), documentRequest.getContent());
     }
-
-=======
-    public String update(@PathVariable String documentNumber, @RequestBody DocumentRequest documentRequest) {
-        documentFlowProcess.change(new DocumentNumber(documentNumber), documentRequest.getTitle(), documentRequest.getContent());
-        return "{'success': true}";
-    }
->>>>>>> origin/master
 }
