@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.com.bottega.documentmanagement.api.SignupResultDto;
 import pl.com.bottega.documentmanagement.api.UserManager;
 
-/**
- * Created by maciuch on 03.07.16.
- */
 @RestController
 @RequestMapping("/session")
 public class SessionController {
@@ -24,5 +21,4 @@ public class SessionController {
     public SignupResultDto login(@RequestBody LoginRequest loginRequest) {
         return userManager.login(loginRequest.getLogin(), loginRequest.getPassword());
     }
-
 }

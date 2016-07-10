@@ -7,9 +7,6 @@ import pl.com.bottega.documentmanagement.domain.repositories.DocumentRepository;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Created by maciuch on 12.06.16.
- */
 public class ReadingConfirmator {
 
     private DocumentRepository documentRepository;

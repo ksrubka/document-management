@@ -9,9 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-/**
- * Created by maciuch on 19.06.16.
- */
 @Repository
 public class JPAEmployeeRepository implements EmployeeRepository {
 

@@ -17,16 +17,13 @@ public class Document {
     private String title;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt, updatedAt, verifiedAt;
+    private Date createdAt, updatedAt, verificatedAt;
 
     @Enumerated(EnumType.STRING)
     private DocumentStatus status;
 
     @ManyToOne
-    private Employee creator;
-
-    @ManyToOne
-    private Employee verificator;
+    private Employee creator, verificator;
 
     private Document() {
     }
@@ -50,7 +47,7 @@ public class Document {
     public void verify(Employee employee) {
         this.verificator = employee;
         this.status = DocumentStatus.VERIFIED;
-        this.verifiedAt = new Date();
+        this.verificatedAt = new Date();
     }
 
     public void confirm(Employee conirmator) {
@@ -60,5 +57,4 @@ public class Document {
     public void confirm(Employee confirmator, Employee forEmployee) {
 
     }
-
 }
