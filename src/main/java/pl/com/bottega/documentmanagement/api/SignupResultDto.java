@@ -12,6 +12,11 @@ public class SignupResultDto {
         success = true;
     }
 
+    public SignupResultDto(String failureReason) {
+        this.failureReason = failureReason;
+        success = false;
+    }
+
     public boolean isSuccess() {
         return success;
     }
@@ -26,11 +31,6 @@ public class SignupResultDto {
 
     public void setFailureReason(String failureReason) {
         this.failureReason = failureReason;
-    }
-
-    public SignupResultDto(String failureReason) {
-        this.failureReason = failureReason;
-        success = false;
     }
 
     @Override
