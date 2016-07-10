@@ -27,6 +27,16 @@ public class JPADocumentsCatalog implements DocumentsCatalog {
     @Override
     public DocumentDto get(DocumentNumber documentNumber) {
         checkNotNull(documentNumber);
+
+        //HQL zamiast JPQL
+        /*
+        "SELECT new pl.com.bottega.documentmanagement.api.DocumentDto(" +
+                "d.title, d.content, d.status, d.employee.employeeId.id" +
+                ") " +
+                "FROM Document d " +
+                "WHERE () AND () AND () AND ()";
+        */
+
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<DocumentDto> query = builder.createQuery(DocumentDto.class);
         Root<Document> root = query.from(Document.class);
