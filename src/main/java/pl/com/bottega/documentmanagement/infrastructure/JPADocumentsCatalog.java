@@ -59,7 +59,7 @@ public class JPADocumentsCatalog implements DocumentsCatalog {
     }
 
     @Override
-    @RequiresAuth(roles = "STAFF")
+    //@RequiresAuth(roles = "STAFF")
     public Iterable<DocumentDto> find(DocumentCriteria documentCriteria) {
         checkNotNull(documentCriteria);
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
@@ -159,5 +159,4 @@ public class JPADocumentsCatalog implements DocumentsCatalog {
             predicates.add(builder.equal(root.get(Document_.status), documentCriteria.getStatus()));
         }
     }
-
 }

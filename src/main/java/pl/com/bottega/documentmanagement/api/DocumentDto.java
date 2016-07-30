@@ -16,9 +16,6 @@ public class DocumentDto {
     private Long creatorId, verificatorId;
     private Date createdAt, updatedAt, verificatedAt;
 
-    private Long creatorId, verificatorId;
-
-    private Date createdAt, verificatedAt, updatedAt;
     public DocumentDto(String number, String title, String content, DocumentStatus status, Date createdAt, Date verificatedAt, Date updatedAt, Long creatorId, Long verificatorId) {
         this.number = number;
         this.title = title;
@@ -29,10 +26,6 @@ public class DocumentDto {
         this.updatedAt = updatedAt;
         this.creatorId = creatorId;
         this.verificatorId = verificatorId;
-    }
-
-    public String getNumber() {
-        return number;
     }
 
     public String getNumber() {
@@ -51,22 +44,6 @@ public class DocumentDto {
         return status;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
-    }
-
-    public Long getVerificatorId() {
-        return verificatorId;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
     public Date getVerificatedAt() {
         return verificatedAt;
     }
@@ -81,10 +58,6 @@ public class DocumentDto {
 
     public Date getCreatedAt() {
         return createdAt;
-    }
-
-    public Date getVerificatedAt() {
-        return verificatedAt;
     }
 
     public Date getUpdatedAt() {
