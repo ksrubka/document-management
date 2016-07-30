@@ -2,6 +2,7 @@ package pl.com.bottega.documentmanagement.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by maciuch on 12.06.16.
@@ -30,6 +31,9 @@ public class Document {
     @ManyToOne
     private Employee deletor;
 
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Tag> tags;
+
     private Document() {
     }
 
@@ -56,6 +60,14 @@ public class Document {
         this.verifiedAt = new Date();
     }
 
+    public void tag(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public Set<Tag> tags() {
+        return  tags;
+    }
+
     public void confirm(Employee conirmator) {
 
     }
@@ -69,4 +81,15 @@ public class Document {
         this.deleted = true;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Document{");
+        sb.append("id=").append(id);
+        sb.append(", content='").append(content).append('\'');
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", creator=").append(creator);
+        sb.append('}' + "\n");
+        return sb.toString();
+    }
 }
