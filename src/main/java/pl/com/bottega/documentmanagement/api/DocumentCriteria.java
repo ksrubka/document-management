@@ -4,6 +4,9 @@ import pl.com.bottega.documentmanagement.domain.DocumentStatus;
 
 import java.util.Date;
 
+/**
+ * Created by maciuch on 12.06.16.
+ */
 public class DocumentCriteria {
 
     private DocumentStatus status;
@@ -12,8 +15,6 @@ public class DocumentCriteria {
     private Date createdFrom, createdUntil;
     private Date verifiedFrom, verifiedUntil;
     private String query;
-    private Integer pageNumber;
-    private Integer perPage;
 
     public DocumentStatus getStatus() {
         return status;
@@ -101,5 +102,17 @@ public class DocumentCriteria {
 
     public boolean isQueryDefined() {
         return query != null;
+    }
+
+    public boolean isVerifiedByDefined() {
+        return verifiedBy != null;
+    }
+
+    public boolean isVerifiedUntilDefined() {
+        return verifiedUntil != null;
+    }
+
+    public boolean isVerifiedFromDefined() {
+        return verifiedFrom != null;
     }
 }

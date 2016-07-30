@@ -22,7 +22,9 @@ public class EmployeesController {
     }
 
     @PostMapping("/{employeeId}/roles")
-    public void updateRoles(@PathVariable("employeeId"), Long id, @RequestBody UpdateRolesRequest request) {
-
+    public void updateRoles(@PathVariable("employeeId") Long id, @RequestBody UpdateRolesRequest request) {
+        EmployeeId employeeId = new EmployeeId(id);
+        userManager.updateRoles(employeeId, request.getRoles());
     }
+
 }

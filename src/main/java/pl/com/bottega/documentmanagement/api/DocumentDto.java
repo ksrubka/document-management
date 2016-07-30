@@ -4,6 +4,9 @@ import pl.com.bottega.documentmanagement.domain.DocumentStatus;
 
 import java.util.Date;
 
+/**
+ * Created by maciuch on 12.06.16.
+ */
 public class DocumentDto {
 
     private String number;
@@ -13,16 +16,23 @@ public class DocumentDto {
     private Long creatorId, verificatorId;
     private Date createdAt, updatedAt, verificatedAt;
 
-    public DocumentDto(String number, String title, String content, DocumentStatus status, Date createdAt, Date updatedAt, Date verificatedAt, Long creatorId, Long verificatorId) {
+    private Long creatorId, verificatorId;
+
+    private Date createdAt, verificatedAt, updatedAt;
+    public DocumentDto(String number, String title, String content, DocumentStatus status, Date createdAt, Date verificatedAt, Date updatedAt, Long creatorId, Long verificatorId) {
         this.number = number;
         this.title = title;
         this.content = content;
         this.status = status.name();
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
         this.verificatedAt = verificatedAt;
+        this.updatedAt = updatedAt;
         this.creatorId = creatorId;
         this.verificatorId = verificatorId;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public String getNumber() {
@@ -59,5 +69,25 @@ public class DocumentDto {
 
     public Date getVerificatedAt() {
         return verificatedAt;
+    }
+
+    public Long getCreatorId() {
+        return creatorId;
+    }
+
+    public Long getVerificatorId() {
+        return verificatorId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getVerificatedAt() {
+        return verificatedAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 }
