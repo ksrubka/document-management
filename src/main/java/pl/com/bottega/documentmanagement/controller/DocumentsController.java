@@ -44,5 +44,4 @@ public class DocumentsController {
     public void destroy(@PathVariable String documentNumber) {
         documentFlowProcess.archive(new DocumentNumber(documentNumber));
     }
-
 }

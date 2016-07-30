@@ -9,6 +9,7 @@ import pl.com.bottega.documentmanagement.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -66,7 +67,13 @@ public class JPADocumentsCatalog implements DocumentsCatalog {
         Root<Document> root = query.from(Document.class);
         selectDocumentDto(builder, query, root);
         applyCriteria(documentCriteria, builder, query, root);
-        return entityManager.createQuery(query).getResultList();
+
+        Query jpaQuery = entityManager.createQuery(query);
+        int first = (documentCriteria.getPageNumber() - 1) * documentCriteria.getPerPage();
+        jpaQuery.setFirstResult(first);
+        jpaQuery.setMaxResults(documentCriteria.getPerPage());
+
+        return jpaQuery.getResultList();
     }
 
     private void applyCriteria(DocumentCriteria documentCriteria, CriteriaBuilder builder, CriteriaQuery<DocumentDto> query, Root<Document> root) {
