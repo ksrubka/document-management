@@ -12,6 +12,8 @@ public class DocumentCriteria {
     private Date createdFrom, createdUntil;
     private Date verifiedFrom, verifiedUntil;
     private String query;
+    private Integer pageNumber;
+    private Integer perPage;
 
     public DocumentStatus getStatus() {
         return status;
