@@ -11,7 +11,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -60,23 +59,31 @@ public class JPADocumentsCatalog implements DocumentsCatalog {
     public DocumentSearchResults find(DocumentCriteria documentCriteria) {
         checkNotNull(documentCriteria);
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+
         CriteriaQuery<DocumentDto> query = builder.createQuery(DocumentDto.class);
         Root<Document> root = query.from(Document.class);
         selectDocumentDto(builder, query, root);
         applyCriteria(documentCriteria, builder, query, root);
 
+        CriteriaQuery<Long> countQuery = builder.createQuery(Long.class);
+        Root<Document> countRoot = countQuery.from(Document.class);
+        countQuery.select(builder.count(countRoot));
+        applyCriteria(documentCriteria, builder, countQuery, countRoot);
+
         Query jpaQuery = entityManager.createQuery(query);
-        int first = (documentCriteria.getPageNumber() - 1) * documentCriteria.getPerPage();
-        jpaQuery.setFirstResult(first);
-        jpaQuery.setMaxResults(documentCriteria.getPerPage());
+        Query jpaCountQuery = entityManager.createQuery(countQuery);
+
+        long first = (documentCriteria.getPageNumber() - 1) * documentCriteria.getPerPage();
+        jpaQuery.setFirstResult((int) first);
+        jpaQuery.setMaxResults(documentCriteria.getPerPage().intValue());
 
         return new DocumentSearchResults(jpaQuery.getResultList(),
                 documentCriteria.getPerPage(),
                 documentCriteria.getPageNumber(),
-                0);
+                (Long) jpaCountQuery.getSingleResult());
     }
 
-    private void applyCriteria(DocumentCriteria documentCriteria, CriteriaBuilder builder, CriteriaQuery<DocumentDto> query, Root<Document> root) {
+    private void applyCriteria(DocumentCriteria documentCriteria, CriteriaBuilder builder, CriteriaQuery query, Root<Document> root) {
         Collection<Predicate> predicates = new HashSet<>();
         applyStatus(documentCriteria, builder, root, predicates);
         applyCreatedBy(documentCriteria, builder, root, predicates);

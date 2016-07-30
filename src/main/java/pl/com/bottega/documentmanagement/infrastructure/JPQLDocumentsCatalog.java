@@ -50,7 +50,7 @@ public class JPQLDocumentsCatalog implements DocumentsCatalog {
         return new DocumentSearchResults(query.getResultList(),
                 documentCriteria.getPerPage(),
                 documentCriteria.getPageNumber(),
-                0);
+                0L);
     }
 
     private String buildQuery(DocumentCriteria documentCriteria) {

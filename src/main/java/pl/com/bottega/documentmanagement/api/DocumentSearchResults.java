@@ -6,12 +6,12 @@ package pl.com.bottega.documentmanagement.api;
 public class DocumentSearchResults {
 
     private Iterable<DocumentDto> documents;
-    private int perPage, pageNumber, totalPages;
+    private Long perPage, pageNumber, totalPages;
 
     public DocumentSearchResults(Iterable<DocumentDto> documents,
-                                 int perPage,
-                                 int pageNumber,
-                                 int totalPages) {
+                                 Long perPage,
+                                 Long pageNumber,
+                                 Long totalPages) {
         this.documents = documents;
         this.perPage = perPage;
         this.pageNumber = pageNumber;
@@ -26,27 +26,27 @@ public class DocumentSearchResults {
         this.documents = documents;
     }
 
-    public int getPerPage() {
+    public Long getPerPage() {
         return perPage;
     }
 
-    public void setPerPage(int perPage) {
+    public void setPerPage(Long perPage) {
         this.perPage = perPage;
     }
 
-    public int getPageNumber() {
+    public Long getPageNumber() {
         return pageNumber;
     }
 
-    public void setPageNumber(int pageNumber) {
+    public void setPageNumber(Long pageNumber) {
         this.pageNumber = pageNumber;
     }
 
-    public int getTotalPages() {
+    public Long getTotalPages() {
         return totalPages;
     }
 
-    public void setTotalPages(int totalPages) {
+    public void setTotalPages(Long totalPages) {
         this.totalPages = totalPages;
     }
 }

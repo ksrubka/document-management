@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public class DocumentCriteria {
 
-    private static final int DEFAULT_PER_PAGE = 2;
-    private static final int DEFAULT_PAGE_NUMBER = 1;
+    private static final Long DEFAULT_PER_PAGE = 2L;
+    private static final Long DEFAULT_PAGE_NUMBER = 1L;
 
     private DocumentStatus status;
     private Long verifiedBy;
@@ -18,22 +18,22 @@ public class DocumentCriteria {
     private Date createdFrom, createdUntil;
     private Date verifiedFrom, verifiedUntil;
     private String query;
-    private int pageNumber = DEFAULT_PER_PAGE;
-    private int perPage = DEFAULT_PAGE_NUMBER;
+    private Long pageNumber = DEFAULT_PER_PAGE;
+    private Long perPage = DEFAULT_PAGE_NUMBER;
 
-    public Integer getPageNumber() {
+    public Long getPageNumber() {
         return pageNumber;
     }
 
-    public void setPageNumber(Integer pageNumber) {
+    public void setPageNumber(Long pageNumber) {
         this.pageNumber = pageNumber;
     }
 
-    public Integer getPerPage() {
+    public Long getPerPage() {
         return perPage;
     }
 
-    public void setPerPage(Integer perPage) {
+    public void setPerPage(Long perPage) {
         this.perPage = perPage;
     }
 
