@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.context.ContextConfiguration;
 import pl.com.bottega.documentmanagement.domain.Employee;
 import pl.com.bottega.documentmanagement.domain.EmployeeId;
 import pl.com.bottega.documentmanagement.domain.repositories.EmployeeRepository;
@@ -62,7 +63,7 @@ public class UserManagerTest {
         //stwórz stringa available login
         SignupResultDto signupResultDto = userManager.signup(availableLogin, anyPassword, anyEmployeId);
 
-        //then - assercja is sukces
+        //then - assercja isSucccess
         verify(employeeRepository).save(anyEmploye);
         assertTrue(signupResultDto.isSuccess());
         assertNull(signupResultDto.getFailureReason());
