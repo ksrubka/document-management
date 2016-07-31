@@ -24,6 +24,8 @@ public class DocumentTest {
 
     private String content = "testowa zawartość  dokumnetu";
     private String title = "testowy tytuł gęśla jaźń";
+    private static long EPS = 2*1000L;
+    Document document = new Document(anyNumber, content, title, anyEmployee);
 
     @Test
     public void shouldCreateDocumentWithInitialState() {
@@ -80,7 +82,6 @@ public class DocumentTest {
     @Test
     public void shouldVerifyDocument() {
         //given - have document and verifier
-        Document document = new Document(anyNumber, content, title, anyEmployee);
 
         //when - verify document
         document.verify(anyEmployee);
@@ -88,6 +89,16 @@ public class DocumentTest {
         //then - check if its verified
         assertEquals(DocumentStatus.VERIFIED, document.status());
         assertEquals(anyEmployee, document.verificator());
-        assertNotNull(document.verifiedAt());
+        assertTrue(Math.abs(new Date().getTime() - document.verifiedAt().getTime()) < EPS);
+    }
+
+    @Test
+    public void shouldRequireVerificatorOtherWayFails() {
+        try {
+            document.verify(null);
+        }
+        catch (IllegalArgumentException ex) {
+            return;
+        }
     }
 }
