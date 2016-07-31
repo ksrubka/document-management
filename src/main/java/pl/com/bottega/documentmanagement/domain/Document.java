@@ -116,4 +116,12 @@ public class Document {
     public Employee creator() {
         return creator;
     }
+
+    public Employee verificator() {
+        return verificator;
+    }
+
+    public Date verifiedAt() {
+        return verifiedAt;
+    }
 }
