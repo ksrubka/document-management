@@ -33,10 +33,6 @@ public class NPlus1SelectSimulator {
         }
     }
 
-    private String randomString() {
-        return UUID.randomUUID().toString();
-    }
-
     @Transactional
     public void simulate() {
         Query query = entityManager.createQuery("FROM Document d", Document.class).setMaxResults(10);
@@ -47,5 +43,16 @@ public class NPlus1SelectSimulator {
                 System.out.print(t.toString() + " ");
         }
         System.out.println("\n");
+    }
+
+    @Transactional
+    public Document getDocument() {
+        Query query = entityManager.createQuery("From Document Join Fetch d.tags");
+        query.setMaxResults(1);
+        return (Document) query.getResultList().get(0);
+    }
+
+    private String randomString() {
+        return UUID.randomUUID().toString();
     }
 }
