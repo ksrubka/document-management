@@ -31,7 +31,7 @@ public class Document {
     @ManyToOne
     private Employee deletor;
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade=CascadeType.ALL)
     private Set<Tag> tags;
 
     private Document() {
@@ -91,5 +91,29 @@ public class Document {
         sb.append(", creator=").append(creator);
         sb.append('}' + "\n");
         return sb.toString();
+    }
+
+    public String content() {
+        return content;
+    }
+
+    public String title() {
+        return title;
+    }
+
+    public DocumentNumber number() {
+        return documentNumber;
+    }
+
+    public boolean deleted() {
+        return deleted;
+    }
+
+    public DocumentStatus status() {
+        return status;
+    }
+
+    public Employee creator() {
+        return creator;
     }
 }
