@@ -42,7 +42,7 @@ public class NPlus1SelectSimulator {
             for (Tag t : d.tags())
                 System.out.print(t.toString() + " ");
         }
-        System.out.println("\n");
+        System.out.println("\n" + " ");
     }
 
     @Transactional
