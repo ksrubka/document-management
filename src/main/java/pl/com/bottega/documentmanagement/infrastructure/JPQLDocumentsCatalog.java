@@ -1,6 +1,5 @@
 package pl.com.bottega.documentmanagement.infrastructure;
 
-import org.springframework.stereotype.Component;
 import pl.com.bottega.documentmanagement.api.DocumentCriteria;
 import pl.com.bottega.documentmanagement.api.DocumentDto;
 import pl.com.bottega.documentmanagement.api.DocumentSearchResults;
@@ -55,34 +54,29 @@ public class JPQLDocumentsCatalog implements DocumentsCatalog {
 
     private String buildQuery(DocumentCriteria documentCriteria) {
         List<String> queryList = new ArrayList<>();
-        if (documentCriteria.isStatusDefined()) {
+        if (documentCriteria.isStatusDefined())
             queryList.add(" d.status =:status ");
-        }
-        if (documentCriteria.isCreatedByDefined()) {
+
+        if (documentCriteria.isCreatedByDefined())
             queryList.add(" d.creator.employeeId.id =:creatorId ");
-        }
-        if (documentCriteria.isVerifiedByDefined()) {
+
+        if (documentCriteria.isVerifiedByDefined())
             queryList.add(" d.verificator.employeeId.id =:verificatorId ");
-        }
 
-
-        if (documentCriteria.isCreatedUntilDefined()) {
+        if (documentCriteria.isCreatedUntilDefined())
             queryList.add(" d.createdAt < :createUntil ");
-        }
-        if (documentCriteria.isCreatedFromDefined()) {
+
+        if (documentCriteria.isCreatedFromDefined())
             queryList.add(" d.createdAt > :createFrom ");
-        }
 
-        if (documentCriteria.isVerifiedUntilDefined()) {
+        if (documentCriteria.isVerifiedUntilDefined())
             queryList.add(" d.verifiedAt < :verifiedUntil ");
-        }
-        if (documentCriteria.isVerifiedFromDefined()) {
-            queryList.add(" d.verifiedAt > :verifiedFrom ");
-        }
 
-        if (documentCriteria.isQueryDefined()) {
+        if (documentCriteria.isVerifiedFromDefined())
+            queryList.add(" d.verifiedAt > :verifiedFrom ");
+
+        if (documentCriteria.isQueryDefined())
             queryList.add(" (d.title LIKE :query OR d.content LIKE :query) ");
-        }
 
         String jpql = "SELECT new pl.com.bottega.documentmanagement.api.DocumentDto(" +
                 "d.documentNumber.number," +
@@ -129,5 +123,4 @@ public class JPQLDocumentsCatalog implements DocumentsCatalog {
             query.setParameter("query", "%" + documentCriteria.getQuery() + "%");
         }
     }
-
 }

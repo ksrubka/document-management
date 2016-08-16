@@ -40,7 +40,7 @@ public class JPADocumentCatalogTest {
     private DocumentsCatalog jpaDocumentCatalog;
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Test
     @Transactional
@@ -70,5 +70,4 @@ public class JPADocumentCatalogTest {
         assertEquals("DRAFT", document.getContent());
         assertEquals("DRAFT", document.getStatus());
     }
-
 }

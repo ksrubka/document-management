@@ -1,9 +1,6 @@
 package pl.com.bottega.documentmanagement.api;
 
-import com.google.common.base.Charsets;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;
-import com.google.common.hash.Hashing;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
@@ -17,7 +14,6 @@ import pl.com.bottega.documentmanagement.domain.repositories.EmployeeRepository;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by maciuch on 12.06.16.
