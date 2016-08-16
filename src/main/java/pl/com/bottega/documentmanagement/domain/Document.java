@@ -113,6 +113,10 @@ public class Document {
         return deleted;
     }
 
+    public Employee deletor() {
+        return deletor;
+    }
+
     public DocumentStatus status() {
         return status;
     }
