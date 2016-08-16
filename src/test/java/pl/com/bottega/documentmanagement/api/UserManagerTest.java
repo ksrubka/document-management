@@ -51,6 +51,11 @@ public class UserManagerTest {
     }
 
     @Test
+    public void shouldNotSignUpEmployeeWhenIdIsOccupiedAndLoginIsAvailable() {
+
+    }
+
+    @Test
     public void shouldSignUpEmployeeWhenIdAndLoginAreAvailable() {
         //given - setup userManagera
         UserManager userManager = new UserManager(employeeRepository, employeeFactory, passwordHasher);
@@ -68,4 +73,23 @@ public class UserManagerTest {
         assertTrue(signupResultDto.isSuccess());
         assertNull(signupResultDto.getFailureReason());
     }
+
+    @Test
+    public void shouldLoginRegisteredEmployeeWithCorrectLoginAndPassword() {
+    }
+
+    @Test
+    public void shouldNotLoginEmployeeWhenPasswordIsIncorrect() {
+    }
+
+    @Test
+    public void shouldNotLoginEmployeeWhenLoginIsIncorrect() {
+    }
+
+    @Test
+    public void shouldAddRoleForEmployee() {
+    }
+
+
+
 }
