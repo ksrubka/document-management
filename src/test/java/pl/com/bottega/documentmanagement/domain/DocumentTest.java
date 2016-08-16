@@ -24,8 +24,8 @@ public class DocumentTest {
 
     private String content = "testowa zawartość  dokumnetu";
     private String title = "testowy tytuł gęśla jaźń";
-    private static long EPS = 2*1000L;
-    Document document = new Document(anyNumber, content, title, anyEmployee);
+    private final static long EPS = 2 * 1000L;
+    private Document document = new Document(anyNumber, content, title, anyEmployee);
 
     @Test
     public void shouldCreateDocumentWithInitialState() {
@@ -96,9 +96,24 @@ public class DocumentTest {
     public void shouldRequireVerificatorOtherWayFails() {
         try {
             document.verify(null);
-        }
-        catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex) {
             return;
         }
+        fail("IllegalArgumentException expected");
+    }
+
+    @Test
+    public void shouldEditDocument() {
+        String changedTitle = "changed title";
+        String changedContent = "changed content";
+        document.change(changedTitle, document.title());
+        document.change(changedContent, document.content());
+    }
+
+    @Test
+    public void shouldDeleteDocument() {
+        document.delete(anyEmployee);
+        assertTrue(document.deleted());
+        assertEquals(anyEmployee, document.deletor());
     }
 }
