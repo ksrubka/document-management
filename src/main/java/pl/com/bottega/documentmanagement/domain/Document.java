@@ -51,15 +51,17 @@ public class Document {
     }
 
     public void change(String title, String content) {
+        checkArgument(!title.equals(""));
+        checkArgument(!content.equals(""));
         this.title = title;
         this.content = content;
         this.status = DocumentStatus.DRAFT;
         this.updatedAt = new Date();
     }
 
-    public void verify(Employee employee) {
-        checkArgument(employee != null);
-        this.verificator = employee;
+    public void verify(Employee verifier) {
+        checkArgument(verifier != null);
+        this.verificator = verifier;
         this.status = DocumentStatus.VERIFIED;
         this.verifiedAt = new Date();
     }
@@ -81,6 +83,7 @@ public class Document {
     }
 
     public void delete(Employee deletor) {
+        checkArgument(deletor != null);
         this.deletor = deletor;
         this.deleted = true;
     }
