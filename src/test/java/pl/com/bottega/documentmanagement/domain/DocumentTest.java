@@ -24,6 +24,8 @@ public class DocumentTest {
 
     private String content = "testowa zawartość  dokumnetu";
     private String title = "testowy tytuł gęśla jaźń";
+    private String changedTitle = "changed title";
+    private String changedContent = "changed content";
     private final static long EPS = 2 * 1000L;
     private Document document = new Document(anyNumber, content, title, anyEmployee);
 
@@ -104,10 +106,39 @@ public class DocumentTest {
 
     @Test
     public void shouldEditDocument() {
-        String changedTitle = "changed title";
-        String changedContent = "changed content";
-        document.change(changedTitle, document.title());
-        document.change(changedContent, document.content());
+        document.change(changedTitle, changedContent);
+        assertEquals(changedTitle, document.title());
+        assertEquals(changedContent, document.content());
+    }
+
+    @Test
+    public void shouldFailChangingDocumentGivingEmptyTitle() {
+        try {
+            document.change("", changedContent);
+        } catch (IllegalArgumentException ex) {
+            return;
+        }
+        fail("IllegalArgumentException expected");
+    }
+
+    @Test
+    public void shouldFailChangingDocumentGivingEmptyContent() {
+        try {
+            document.change(changedTitle, "");
+        } catch (IllegalArgumentException ex) {
+            return;
+        }
+        fail("IllegalArgumentException expected");
+    }
+
+    @Test
+    public void shouldFailChangingDocumentGivingEmptyTitleAndContent() {
+        try {
+            document.change("", "");
+        } catch (IllegalArgumentException ex) {
+            return;
+        }
+        fail("IllegalArgumentException expected");
     }
 
     @Test
