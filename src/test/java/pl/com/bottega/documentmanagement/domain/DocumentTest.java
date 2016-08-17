@@ -93,7 +93,7 @@ public class DocumentTest {
     }
 
     @Test
-    public void shouldRequireVerificatorOtherWayFails() {
+    public void shouldFailVerifyingDocumentWithoutVerificator() {
         try {
             document.verify(null);
         } catch (IllegalArgumentException ex) {
@@ -115,5 +115,15 @@ public class DocumentTest {
         document.delete(anyEmployee);
         assertTrue(document.deleted());
         assertEquals(anyEmployee, document.deletor());
+    }
+
+    @Test
+    public void shouldFailDeletingDocumentWithoutDeletor() {
+        try {
+            document.delete(null);
+        } catch (IllegalArgumentException ex) {
+            return;
+        }
+        fail("IllegalArgumentException expected");
     }
 }
